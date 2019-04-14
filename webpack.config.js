@@ -17,8 +17,17 @@ module.exports = webpackMerge({
   module: {
     rules: [
       {
+        enforce: 'pre',
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: [
+          'ts-loader',
+          {
+            loader: 'tslint-loader',
+            options: {
+              emitErrors: true,
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
     ],
